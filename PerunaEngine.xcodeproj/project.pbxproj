@@ -16,8 +16,7 @@
 		B9781AC21B2748550082BDAA /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9781AC11B2748550082BDAA /* OpenGL.framework */; };
 		B9781AC41B27487E0082BDAA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9781AC31B27487E0082BDAA /* CoreVideo.framework */; };
 		B9781AC61B2748820082BDAA /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9781AC51B2748820082BDAA /* GLUT.framework */; };
-		B9781ACC1B274E1E0082BDAA /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9781ACB1B274E1E0082BDAA /* libglfw3.a */; };
-		B99699191B2747870056EAB5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B99699181B2747870056EAB5 /* main.cpp */; };
+		B9781AD21B27572E0082BDAA /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9781AD11B27572E0082BDAA /* libglfw3.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,7 +48,7 @@
 		B9781AC11B2748550082BDAA /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B9781AC31B27487E0082BDAA /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		B9781AC51B2748820082BDAA /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
-		B9781ACB1B274E1E0082BDAA /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = PerunaEngine/libglfw3.a; sourceTree = "<group>"; };
+		B9781AD11B27572E0082BDAA /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = PerunaEngine/libglfw3.a; sourceTree = "<group>"; };
 		B99699151B2747870056EAB5 /* PerunaEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PerunaEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99699181B2747870056EAB5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9781ACC1B274E1E0082BDAA /* libglfw3.a in Frameworks */,
+				B9781AD21B27572E0082BDAA /* libglfw3.a in Frameworks */,
 				B9781AC61B2748820082BDAA /* GLUT.framework in Frameworks */,
 				B9781AC41B27487E0082BDAA /* CoreVideo.framework in Frameworks */,
 				B9781AC21B2748550082BDAA /* OpenGL.framework in Frameworks */,
@@ -74,7 +73,7 @@
 		B996990C1B2747870056EAB5 = {
 			isa = PBXGroup;
 			children = (
-				B9781ACB1B274E1E0082BDAA /* libglfw3.a */,
+				B9781AD11B27572E0082BDAA /* libglfw3.a */,
 				B9781AC51B2748820082BDAA /* GLUT.framework */,
 				B9781AC31B27487E0082BDAA /* CoreVideo.framework */,
 				B9781AC11B2748550082BDAA /* OpenGL.framework */,
@@ -171,7 +170,6 @@
 				B9781ABA1B2748390082BDAA /* Geom.cpp in Sources */,
 				B9781AB91B2748390082BDAA /* Cube.cpp in Sources */,
 				B9781ABB1B2748390082BDAA /* main.cpp in Sources */,
-				B99699191B2747870056EAB5 /* main.cpp in Sources */,
 				B9781ABC1B2748390082BDAA /* Shader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +260,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PerunaEngine",
+					/Users/chintanpatel/Dropbox/School/Computer_Graphics/glfw/src,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/PerunaEngine";
+				USER_HEADER_SEARCH_PATHS = /Users/chintanpatel/Dropbox/School/Computer_Graphics/GitHub/PerunaEngine/PerunaEngine;
 			};
 			name = Debug;
 		};
@@ -274,9 +273,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PerunaEngine",
+					/Users/chintanpatel/Dropbox/School/Computer_Graphics/glfw/src,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/PerunaEngine";
+				USER_HEADER_SEARCH_PATHS = /Users/chintanpatel/Dropbox/School/Computer_Graphics/GitHub/PerunaEngine/PerunaEngine;
 			};
 			name = Release;
 		};
