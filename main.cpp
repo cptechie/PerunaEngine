@@ -117,6 +117,9 @@ int main(void)
 		glm::vec4(1.0, 0.5, 0.0, 1.0),
 		glm::vec4(1.0, 1.0, 1.0, 1.0),
 	};
+    for(int i=0; i<8; ++i){
+        cols[i] = glm::vec4(.3, .3, .3, 1.0);
+    }
 	cube = new Cube(cols);
 
 	// initialize view matrices
