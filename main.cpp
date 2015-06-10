@@ -105,7 +105,7 @@ int main(void)
 	glEnable(GL_DEPTH_TEST);
 
 	
-	Shader* s = new Shader("/Users/chintanpatel/Dropbox/School/Computer_Graphics/GitHub/PerunaEngine/simpleShader01.vert", "/Users/chintanpatel/Dropbox/School/Computer_Graphics/GitHub/PerunaEngine/simpleShader01.frag");
+	Shader* s = new Shader("simpleShader01.vert", "simpleShader01.frag");
 
 	glm::vec4 cols[] = {
 		glm::vec4(1.0, 0.0, 0.0, 1.0),
