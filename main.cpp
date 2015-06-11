@@ -28,6 +28,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/transform2.hpp"
+#include <stack>
+
 
 
 static void error_callback(int error, const char* description)
@@ -49,11 +51,13 @@ Cube* cube;
 // MATRICES
 // model, view, modelView, projection, modelViewProjection
 glm::mat4 M, V, MV, P, MVP;
+glm::mat3 N;
 // translate, rotate, scale
 glm::mat4 T, R, S;
 
 // UNIFORMS for MATRICES
 GLuint M_U, V_U, MV_U, P_U, MVP_U;
+GLuint N_U;
 GLuint T_U, R_U, S_U;
 
 float viewAngle = 75.0f;
@@ -65,6 +69,11 @@ void translate(glm::vec3 v);
 void rotate(float ang, glm::vec3 axes);
 void scale(glm::vec3 sclFactor);
 void concat();
+
+//manage transforms
+void pushMatrix();
+void popMatrix();
+std::stack <glm::mat4> matrixStack;
 
 // use GL3 context (OpenGL 3.2-4.1) // required for osx only, I think
 #define GLFW_INCLUDE_GLCOREARB
@@ -103,6 +112,8 @@ int main(void)
     glfwSetKeyCallback(window, key_callback);
 
 	glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
 
 	
 	Shader* s = new Shader("simpleShader01.vert", "simpleShader01.frag");
@@ -118,7 +129,8 @@ int main(void)
 		glm::vec4(1.0, 1.0, 1.0, 1.0),
 	};
     for(int i=0; i<8; ++i){
-        cols[i] = glm::vec4(.3, .3, .3, 1.0);
+        //cols[i] = glm::vec4(.3+i*.1, .3, .3, 1.0);
+         cols[i] = glm::vec4(.2, .2, .2, 1.0);
     }
 	cube = new Cube(cols);
 
@@ -129,6 +141,7 @@ int main(void)
 	M = glm::mat4(1.0f); // set to identity
 	V = glm::lookAt(glm::vec3(0.0, 0.0, 10.0f), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 	MV = V * M;
+    N = glm::transpose(glm::inverse(glm::mat3(MV)));
 
 	// projection matrix and MVP Matrix
 	// perspective
@@ -145,7 +158,7 @@ int main(void)
 	//nearDist = .1f;
 	//farDist = 1500.0f;
 
-	P = glm::perspective(viewAngle, aspect, .1f, 2000.0f);
+	P = glm::perspective(viewAngle, aspect, .1f, 400.0f);
 	MVP = P * MV;
 	// END Model / View / Projection data
 
@@ -161,26 +174,39 @@ int main(void)
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		// float ratio;
-       // int width, height;
-       // glfwGetFramebufferSize(window, &width, &height);
-       // ratio = width / (float) height;
-//        std::cout << "width = " << width << std::endl;
-//        std::cout << "height = " << height << std::endl;
-        glViewport(0, 0, width, height);
+        int w = 0;
+        int h = 0;
+        glfwGetFramebufferSize(window, &w, &h);
+        
+        // set viewport using actual resolution independent screen size
+        glViewport(0, 0, w, h);
 		
 
 		// reset to identity each frame
 		M = glm::mat4(1.0f);
 		MV = V * M;
+        //mat4 normalMatrix = transpose(inverse(modelView));
+        N = glm::transpose(glm::inverse(glm::mat3(MV)));
 		MVP = P * MV;
 
 		glUniformMatrix4fv(M_U, 1, GL_FALSE, &M[0][0]);
 		glUniformMatrix4fv(MV_U, 1, GL_FALSE, &MV[0][0]);
 		glUniformMatrix4fv(MVP_U, 1, GL_FALSE, &MVP[0][0]);
+        glUniformMatrix4fv(N_U, 1, GL_FALSE, &N[0][0]);
 
-		rotate(glfwGetTime(), glm::vec3(.75, 1, .5));
+		translate(glm::vec3(0, 0, -3));
+        pushMatrix();
+        translate(glm::vec3(1, 0, 0));
+        rotate(glfwGetTime(), glm::vec3(.25, 1, .75));
         cube->display(Cube::SURFACE);
+        popMatrix();
+        
+        pushMatrix();
+        translate(glm::vec3(-1, 0, 0));
+        rotate(-glfwGetTime(), glm::vec3(-.35, 1, .1));
+        cube->display(Cube::SURFACE);
+        popMatrix();
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -195,6 +221,7 @@ void initUniforms(Shader* s){
 	M_U = glGetUniformLocation(s->shader_id, "modelMatrix");
 	MV_U = glGetUniformLocation(s->shader_id, "modelViewMatrix");
 	MVP_U = glGetUniformLocation(s->shader_id, "modelViewProjectionMatrix");
+    N_U = glGetUniformLocation(s->shader_id, "normalMatrix");
 }
 
 // TRNAFORMAION Functions
@@ -216,9 +243,32 @@ void scale(glm::vec3 sclFactor) {
 // rebuild transformed MVP matrix and update shader uniforms
 void concat(){
 	MV = V * M;
+    //gl_NormalMatrix= glm::transpose(glm::inverse(glm::mat3(gl_ModelViewMatrix)));
+    N = glm::transpose(glm::inverse(glm::mat3(MV)));
 	MVP = P * MV;
 	glUniformMatrix4fv(M_U, 1, GL_FALSE, &M[0][0]);
 	glUniformMatrix4fv(MV_U, 1, GL_FALSE, &MV[0][0]);
 	glUniformMatrix4fv(MVP_U, 1, GL_FALSE, &MVP[0][0]);
+    glUniformMatrix4fv(N_U, 1, GL_FALSE, &N[0][0]);
+}
+
+// implements transform matrix stack
+void pushMatrix(){
+    // push current transformation matrix onto stack
+    matrixStack.push(M);
+    
+}
+
+// reset transformation matrix with stored matrix on stack
+void popMatrix(){
+    
+    // reset current transformation matrix with one on top of stack
+    M = matrixStack.top();
+    
+    // pop transformation matrix off top of stack
+    matrixStack.pop();
+    
+    // rebuild matrices and update on GPU
+    concat();
 }
 
