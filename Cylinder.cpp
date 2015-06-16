@@ -9,22 +9,26 @@
 #include "Cylinder.h"
 
 Cylinder::Cylinder():cylinderRadius(.5), cylinderHeight(1), cylinderDetail(10){
-//    for(int i=0; i<cylinderDetail; ++i){
-//        for(int j=0; j<ringDetail; ++j){
-//            cols.push_back(glm::vec4(.75, .25, .64, 1.0));
-//        }
-//    }
+    for(int i=0; i<cylinderDetail; ++i){
+        cols.push_back(glm::vec4(.75, .25, .64, 1.0));
+    }
+    
+    cols.push_back(glm::vec4(.75, .25, .64, 1.0));
+    cols.push_back(glm::vec4(.75, .25, .64, 1.0));
+    
     init();
 }
 
 Cylinder::Cylinder(float cylinderRadius, float cylinderHeight, int cylinderDetail, const glm::vec4& col):
 cylinderRadius(cylinderRadius), cylinderHeight(cylinderHeight), cylinderDetail(cylinderDetail) {
-//    for(int i=0; i<cylinderDetail; ++i){
-//        for(int j=0; j<ringDetail; ++j){
-//            cols.push_back(col);
-//        }
-//    }
-//    init();
+    for(int i=0; i<cylinderDetail; ++i){
+        cols.push_back(col);
+    }
+    
+    cols.push_back(col);
+    cols.push_back(col);
+    
+    init();
 }
 
 
@@ -48,59 +52,81 @@ cylinderRadius(cylinderRadius), cylinderHeight(cylinderHeight), cylinderDetail(c
 
 void Cylinder::calcVerts() {
     glm::vec3 temp;
+    
     float theta = 0.0;
+    
+    verts.push_back(glm::vec3(0, 0, cylinderRadius/2));
+    verts.push_back(glm::vec3(0, 0, -cylinderRadius/2));
+    
     for(int i=0; i<cylinderDetail; ++i){
-        float phi = 0.0;
+//        float phi = 0.0;
         // start with rot around y-axis
-        temp.z = cos(theta)*ringRadius;
-        temp.x = cylinderRadius + sin(theta)*ringRadius;
-        temp.y = 0;
-        for(int j=0; j<ringDetail; ++j){
-            // now rotate around z-axis
-            verts.push_back(glm::vec3( temp.x*cos(phi) - temp.y*sin(phi), temp.x*sin(phi) + temp.y*cos(phi), temp.z ));
-            phi += M_PI*2/ringDetail;
-            
-            // 2 triangles making up each quad of cylinder
-            /*
-             a---c
-             |  /|
-             | / |
-             |/  |
-             b---d
-             */
-            int a = i*ringDetail+j;
-            int b = i*ringDetail+j+1;
-            int c = (i+1)*ringDetail+j;
-            int d = (i+1)*ringDetail+j+1;
-            
-            // end cases
-            int e = i *ringDetail;
-            int f = (i+1)*ringDetail;
-            int g = j+1;
-            
-            if (i<cylinderDetail-1){
-                if (j<ringDetail-1){
-                    inds.push_back(Elem(a, d, b));
-                    inds.push_back(Elem(a, c, d));
-                } else {
-                    // close ring
-                    inds.push_back(Elem(a, f, e));
-                    inds.push_back(Elem(a, c, f));
-                }
-                // close cylinder
-            } else {
-                if (j<ringDetail-1){
-                    inds.push_back(Elem(a, g, b));
-                    inds.push_back(Elem(a, j, g));
-                } else {
-                    // close ring
-                    inds.push_back(Elem(a, 0, e));
-                    inds.push_back(Elem(a, j, 0));
-                }
-                
-                
-            }
-        }
+
+        verts.push_back(glm::vec3(cylinderRadius*cos(theta), cylinderRadius*cos(theta), cylinderRadius/2));
+        verts.push_back(glm::vec3(cylinderRadius*cos(theta), cylinderRadius*cos(theta), -cylinderRadius/2));
+        
+//      b---a
+//      |  /|
+//      | / |
+//      |/  |
+//      c---d
+        
+        int a = i + 2;
+        int b = i + 4;
+        int c = i + 5;
+        int d = i + 3;
+        
+        inds.push_back(Elem(a, b, c));
+        inds.push_back(Elem(a, c, d));
+        inds.push_back(Elem(0, a, b));
+        inds.push_back(Elem(0, d, c));
+//
+//        for(int j=0; j<ringDetail; ++j){
+//            // now rotate around z-axis
+//            verts.push_back(glm::vec3( temp.x*cos(phi) - temp.y*sin(phi), temp.x*sin(phi) + temp.y*cos(phi), temp.z ));
+//            phi += M_PI*2/ringDetail;
+//            
+//            // 2 triangles making up each quad of cylinder
+//            /*
+//             a---c
+//             |  /|
+//             | / |
+//             |/  |
+//             b---d
+//             */
+//            int a = i*ringDetail+j;
+//            int b = i*ringDetail+j+1;
+//            int c = (i+1)*ringDetail+j;
+//            int d = (i+1)*ringDetail+j+1;
+//            
+//            // end cases
+//            int e = i *ringDetail;
+//            int f = (i+1)*ringDetail;
+//            int g = j+1;
+//            
+//            if (i<cylinderDetail-1){
+//                if (j<ringDetail-1){
+//                    inds.push_back(Elem(a, d, b));
+//                    inds.push_back(Elem(a, c, d));
+//                } else {
+//                    // close ring
+//                    inds.push_back(Elem(a, f, e));
+//                    inds.push_back(Elem(a, c, f));
+//                }
+//                // close cylinder
+//            } else {
+//                if (j<ringDetail-1){
+//                    inds.push_back(Elem(a, g, b));
+//                    inds.push_back(Elem(a, j, g));
+//                } else {
+//                    // close ring
+//                    inds.push_back(Elem(a, 0, e));
+//                    inds.push_back(Elem(a, j, 0));
+//                }
+//                
+//                
+//            }
+//        }
         theta += M_PI*2/cylinderDetail;
     }
 }
