@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B93550681B308EA20082D2C9 /* Toroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B93550671B308EA20082D2C9 /* Toroid.cpp */; };
+		B93550701B3090180082D2C9 /* Cylinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B935506E1B3090180082D2C9 /* Cylinder.cpp */; };
 		B9781ABE1B27484D0082BDAA /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9781ABD1B27484D0082BDAA /* IOKit.framework */; };
 		B9781AC01B2748510082BDAA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9781ABF1B2748510082BDAA /* Cocoa.framework */; };
 		B9781AC21B2748550082BDAA /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9781AC11B2748550082BDAA /* OpenGL.framework */; };
@@ -35,6 +36,8 @@
 /* Begin PBXFileReference section */
 		B93550661B308EA20082D2C9 /* Toroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toroid.h; sourceTree = SOURCE_ROOT; };
 		B93550671B308EA20082D2C9 /* Toroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Toroid.cpp; sourceTree = SOURCE_ROOT; };
+		B935506E1B3090180082D2C9 /* Cylinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cylinder.cpp; sourceTree = SOURCE_ROOT; };
+		B935506F1B3090180082D2C9 /* Cylinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cylinder.h; sourceTree = SOURCE_ROOT; };
 		B9781ABD1B27484D0082BDAA /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B9781ABF1B2748510082BDAA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B9781AC11B2748550082BDAA /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -99,6 +102,8 @@
 			children = (
 				B93550661B308EA20082D2C9 /* Toroid.h */,
 				B93550671B308EA20082D2C9 /* Toroid.cpp */,
+				B935506E1B3090180082D2C9 /* Cylinder.cpp */,
+				B935506F1B3090180082D2C9 /* Cylinder.h */,
 				B9A5DC3C1B29F5F4009D1A1F /* Cube.h */,
 				B9A5DC3D1B29F5F4009D1A1F /* Elem.h */,
 				B9A5DC3E1B29F5F4009D1A1F /* Face.h */,
@@ -175,6 +180,7 @@
 				B9A5DC4A1B29F5F4009D1A1F /* Shader.cpp in Sources */,
 				B93550681B308EA20082D2C9 /* Toroid.cpp in Sources */,
 				B9A5DC491B29F5F4009D1A1F /* main.cpp in Sources */,
+				B93550701B3090180082D2C9 /* Cylinder.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
