@@ -11,6 +11,7 @@
 #define __GLFW_Demo__Geom__
 
 #if defined (_WIN32) || defined(_WIN64)
+#define _USE_MATH_DEFINES
 #include <GL/glew.h>
 #include<gl/gl.h>
 #include<gl/glu.h>
@@ -31,7 +32,7 @@
 #include "Face.h"
 #include "glm/glm.hpp"
 
-#endif /* defined(__GLFW_Demo__Geom__) */
+
 
 #define BUFFER_OFFSET(i) ((void*)(i))
 
@@ -81,6 +82,8 @@ protected:
     virtual void calcVerts() = 0;
     virtual void calcInds() = 0;
 };
+
+#endif /* defined(__GLFW_Demo__Geom__) */
 
 
 
