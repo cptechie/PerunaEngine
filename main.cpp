@@ -208,6 +208,10 @@ int main(void) {
     rowGap = rowHeight / (ROWS-1);
     layerGap = layerDepth / (LAYERS-1);
     
+    int xPosition = 0;
+    int yPosition = 0;
+    int zPosition = 20;
+    
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -215,13 +219,30 @@ int main(void) {
         int h = 0;
         glfwGetFramebufferSize(window, &w, &h);
         
+        if(glfwGetKey(window, GLFW_KEY_S)){
+            zPosition++;
+        }
+        
+        if(glfwGetKey(window, GLFW_KEY_W )){
+            zPosition--;
+        }
+        
+        if(glfwGetKey(window, GLFW_KEY_A)){
+            xPosition--;
+        }
+        
+        if(glfwGetKey(window, GLFW_KEY_D )){
+            xPosition++;
+        }
+        
+        
         // set viewport using actual resolution independent screen size
         glViewport(0, 0, w, h);
 		
 
 		// reset to identity each frame
 		M = glm::mat4(1.0f);
-        V = glm::lookAt(glm::vec3(0.0, 0.0, 20), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0));
+        V = glm::lookAt(glm::vec3(0, yPosition, zPosition), glm::vec3(xPosition, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0));
 		MV = V * M;
         //mat4 normalMatrix = transpose(inverse(modelView));
         N = glm::transpose(glm::inverse(glm::mat3(MV)));
