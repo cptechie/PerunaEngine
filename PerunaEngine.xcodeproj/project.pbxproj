@@ -19,6 +19,7 @@
 		B9A5DC481B29F5F4009D1A1F /* Geom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DC421B29F5F4009D1A1F /* Geom.cpp */; };
 		B9A5DC491B29F5F4009D1A1F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DC431B29F5F4009D1A1F /* main.cpp */; };
 		B9A5DC4A1B29F5F4009D1A1F /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DC441B29F5F4009D1A1F /* Shader.cpp */; };
+		B9A6169C1B3275DA00B1946A /* Paraboloid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B93550711B31E6C50082D2C9 /* Paraboloid.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -179,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A6169C1B3275DA00B1946A /* Paraboloid.cpp in Sources */,
 				B9A5DC471B29F5F4009D1A1F /* Cube.cpp in Sources */,
 				B9A5DC481B29F5F4009D1A1F /* Geom.cpp in Sources */,
 				B9A5DC4A1B29F5F4009D1A1F /* Shader.cpp in Sources */,
