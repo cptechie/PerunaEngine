@@ -179,10 +179,27 @@ int main(void) {
 	// initialize view matrices
 	glViewport(0, 0, 640, 480);
 
+    
+    float camPositionX = 0.0;
+    float camPositionY = 0.0;
+    float camPositionZ = 20.0;
+    
+    float camFrontX = 0.0;
+    float camFrontY = 0.0;
+    float camFrontZ = 0.0;
+    
+    float camUpX = 0.0;
+    float camUpY = -1.0;
+    float camUpZ = 0.0;
+    
+    glm::vec3 cameraPos   = glm::vec3(camPositionX, camPositionY, camPositionZ);
+    glm::vec3 cameraFront = glm::vec3(camFrontX, camFrontY, camFrontZ);
+    glm::vec3 cameraUp    = glm::vec3(camUpX, camUpY, camUpZ);
+    
 	// START standard transformation matrices: ModelView / Projection / Normal
 	M = glm::mat4(1.0f); // set to identity
     // eye, center, up axis
-	V = glm::lookAt(glm::vec3(0.0, 0.0, 3.0f), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
+	V = glm::lookAt(cameraPos, cameraFront, cameraUp);
 	MV = V * M;
     N = glm::transpose(glm::inverse(glm::mat3(MV)));
 
@@ -208,10 +225,6 @@ int main(void) {
     rowGap = rowHeight / (ROWS-1);
     layerGap = layerDepth / (LAYERS-1);
     
-    int xPosition = 0;
-    int yPosition = 0;
-    int zPosition = 20;
-    
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -220,29 +233,32 @@ int main(void) {
         glfwGetFramebufferSize(window, &w, &h);
         
         if(glfwGetKey(window, GLFW_KEY_S)){
-            zPosition++;
+            camPositionZ++;
         }
         
         if(glfwGetKey(window, GLFW_KEY_W )){
-            zPosition--;
+            camPositionZ--;
         }
         
         if(glfwGetKey(window, GLFW_KEY_A)){
-            xPosition--;
+            camFrontX--;
         }
         
         if(glfwGetKey(window, GLFW_KEY_D )){
-            xPosition++;
+            camFrontX++;
         }
         
         
         // set viewport using actual resolution independent screen size
         glViewport(0, 0, w, h);
 		
-
+        cameraPos   = glm::vec3(camPositionX, camPositionY, camPositionZ);
+        cameraFront = glm::vec3(camFrontX, camFrontY, camFrontZ);
+        cameraUp    = glm::vec3(camUpX, camUpY, camUpZ);
+        
 		// reset to identity each frame
 		M = glm::mat4(1.0f);
-        V = glm::lookAt(glm::vec3(0, yPosition, zPosition), glm::vec3(xPosition, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0));
+        V = glm::lookAt(cameraPos, cameraFront + cameraFront, cameraUp);
 		MV = V * M;
         //mat4 normalMatrix = transpose(inverse(modelView));
         N = glm::transpose(glm::inverse(glm::mat3(MV)));
