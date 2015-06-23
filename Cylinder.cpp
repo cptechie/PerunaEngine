@@ -56,7 +56,7 @@ void Cylinder::calcInds() {
         int c = i * 2 + 3;
         int d = c + 2;
         inds.push_back(Elem(0, a, b));
-        inds.push_back(Elem(1, c, d));
+        inds.push_back(Elem(d, c, 1));
         
         inds.push_back(Elem(c, d, b));
         inds.push_back(Elem(c, b, a));
@@ -66,7 +66,7 @@ void Cylinder::calcInds() {
     int h = cylinderDetail * 2 + 1;
 
     inds.push_back(Elem(0, g, 2));
-    inds.push_back(Elem(1, h, 3));
+    inds.push_back(Elem(3, h, 1));
     
     inds.push_back(Elem(2, h, 3));
     inds.push_back(Elem(2, g, h));

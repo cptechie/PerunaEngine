@@ -25,6 +25,8 @@
 #include "Shader.h"
 #include "Cube.h"
 #include "Toroid.h"
+#include "Cylinder.h"
+#include "Paraboloid.h"
 
 // for matrices
 #include "glm/gtc/type_ptr.hpp" // matrix copying
@@ -47,7 +49,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 float width = 640, height = 480;
 Cube* cube, * ground;
-//Toroid toroid;
+//Toroid cylinder;
 // shader
 //Shader* s;
 
@@ -141,7 +143,7 @@ int main(void) {
     glCullFace(GL_BACK);
 
 	
-	Shader* s = new Shader("simpleShader01.vert", "simpleShader01.frag");
+	Shader* s = new Shader("phong.vert", "phong.frag");
 
 	glm::vec4 cols[] = {
 		glm::vec4(1.0, 0.0, 0.0, 1.0),
@@ -170,12 +172,11 @@ int main(void) {
 
 	cube = new Cube(cols);
 	ground = new Cube(cols);
-    //float toroidRadius, float ringRadius, int toroidDetail, int ringDetail
-   // toroid = new Toroid(1, .45, 16, 16);
-    Toroid toroid(1, .45, 36, 36);
-
+    //float cylinderRadius, float ringRadius, int cylinderDetail, int ringDetail
+   // cylinder = new Toroid(1, .45, 16, 16);
+    Cylinder cylinder(.5, 1, 15);
+    //Paraboloid(.5, 1, 10, 10, 1);
     
-
 	// initialize view matrices
 	glViewport(0, 0, 640, 480);
 
@@ -304,7 +305,7 @@ int main(void) {
         translate(glm::vec3(0, 0, -8));
         rotate(-glfwGetTime(), glm::vec3(.65, 1, .345));
         scale(glm::vec3(2.55, 2.55, 2.55));
-        toroid.display();
+        cylinder.display();
         popMatrix();
 
         
