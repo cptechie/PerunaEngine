@@ -167,7 +167,7 @@ int main(void) {
 	lightAmbient = glm::vec3(.2, .2, .33);
 	lightDiffuse = glm::vec3(1, 1, 1);
 	lightSpecularity = glm::vec3(1.0, .925, 1.0);
-	lightShininess = 20;
+	lightShininess = 95;
 
 
 	cube = new Cube(cols);
