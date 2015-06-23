@@ -59,6 +59,8 @@
 		B9A5DC441B29F5F4009D1A1F /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = SOURCE_ROOT; };
 		B9A5DC451B29F5F4009D1A1F /* simpleShader01.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simpleShader01.frag; sourceTree = SOURCE_ROOT; };
 		B9A5DC461B29F5F4009D1A1F /* simpleShader01.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simpleShader01.vert; sourceTree = SOURCE_ROOT; };
+		B9ADC4BB1B39C75B00E92DE2 /* phong.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = phong.frag; sourceTree = SOURCE_ROOT; };
+		B9ADC4BC1B39C75B00E92DE2 /* phong.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = phong.vert; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,8 @@
 		B99699171B2747870056EAB5 /* PerunaEngine */ = {
 			isa = PBXGroup;
 			children = (
+				B9ADC4BB1B39C75B00E92DE2 /* phong.frag */,
+				B9ADC4BC1B39C75B00E92DE2 /* phong.vert */,
 				B93550661B308EA20082D2C9 /* Toroid.h */,
 				B93550671B308EA20082D2C9 /* Toroid.cpp */,
 				B935506E1B3090180082D2C9 /* Cylinder.cpp */,
