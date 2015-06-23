@@ -143,7 +143,7 @@ int main(void) {
     glCullFace(GL_BACK);
 
 	
-	Shader* s = new Shader("phong.vert", "phong.frag");
+	Shader* s = new Shader("simpleShader01.vert", "simpleShader01.frag");
 
 	glm::vec4 cols[] = {
 		glm::vec4(1.0, 0.0, 0.0, 1.0),
