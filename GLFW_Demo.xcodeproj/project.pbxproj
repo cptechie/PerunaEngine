@@ -20,6 +20,8 @@
 		728D6FE01B1E2B36005BA29C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728D6FDF1B1E2B36005BA29C /* Cocoa.framework */; };
 		B9E878981B3B149E0030491A /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E878971B3B149E0030491A /* libglfw3.a */; };
 		B9E8789C1B3B226F0030491A /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E8789B1B3B226F0030491A /* libassimp.3.1.1.dylib */; };
+		B9E8789F1B3B23710030491A /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9E8789D1B3B23710030491A /* Mesh.cpp */; };
+		B9E878A21B3B255E0030491A /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9E878A01B3B255E0030491A /* Model.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +61,10 @@
 		728D6FDF1B1E2B36005BA29C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B9E878971B3B149E0030491A /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw3.a; sourceTree = "<group>"; };
 		B9E8789B1B3B226F0030491A /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libassimp.3.1.1.dylib; sourceTree = "<group>"; };
+		B9E8789D1B3B23710030491A /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		B9E8789E1B3B23710030491A /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		B9E878A01B3B255E0030491A /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
+		B9E878A11B3B255E0030491A /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,10 @@
 				7246BE2E1B39CD12003DAC6D /* Geom.cpp */,
 				7246BE2F1B39CD12003DAC6D /* Geom.h */,
 				7246BE301B39CD12003DAC6D /* main.cpp */,
+				B9E8789D1B3B23710030491A /* Mesh.cpp */,
+				B9E878A01B3B255E0030491A /* Model.cpp */,
+				B9E878A11B3B255E0030491A /* Model.h */,
+				B9E8789E1B3B23710030491A /* Mesh.h */,
 				7246BE311B39CD12003DAC6D /* phong.frag */,
 				7246BE321B39CD12003DAC6D /* phong.vert */,
 				7246BE331B39CD12003DAC6D /* simpleShader01.frag */,
@@ -182,9 +192,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9E8789F1B3B23710030491A /* Mesh.cpp in Sources */,
 				7246BE3F1B39CD12003DAC6D /* Cube.cpp in Sources */,
 				7246BE3E1B39CD12003DAC6D /* Toroid.cpp in Sources */,
 				7246BE3D1B39CD12003DAC6D /* main.cpp in Sources */,
+				B9E878A21B3B255E0030491A /* Model.cpp in Sources */,
 				7246BE3C1B39CD12003DAC6D /* Geom.cpp in Sources */,
 				7246BE401B39CD12003DAC6D /* Shader.cpp in Sources */,
 			);
