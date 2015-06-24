@@ -25,8 +25,6 @@
 #include "Shader.h"
 #include "Cube.h"
 #include "Toroid.h"
-#include "Cylinder.h"
-#include "Paraboloid.h"
 
 // for matrices
 #include "glm/gtc/type_ptr.hpp" // matrix copying
@@ -49,7 +47,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 float width = 640, height = 480;
 Cube* cube, * ground;
-//Toroid cylinder;
+//Toroid toroid;
 // shader
 //Shader* s;
 
@@ -143,8 +141,7 @@ int main(void) {
     glCullFace(GL_BACK);
 
 	
-	Shader* s = new Shader("simpleShader01.vert", "simpleShader01.frag");
-
+    Shader* s = new Shader("../PerunaEngine/simpleShader01.vert", "../PerunaEngine/simpleShader01.frag");
 	glm::vec4 cols[] = {
 		glm::vec4(1.0, 0.0, 0.0, 1.0),
 		glm::vec4(0.0, 1.0, 0.0, 1.0),
@@ -167,40 +164,24 @@ int main(void) {
 	lightAmbient = glm::vec3(.2, .2, .33);
 	lightDiffuse = glm::vec3(1, 1, 1);
 	lightSpecularity = glm::vec3(1.0, .925, 1.0);
-	lightShininess = 95;
+	lightShininess = 20;
 
 
 	cube = new Cube(cols);
 	ground = new Cube(cols);
-    //float cylinderRadius, float ringRadius, int cylinderDetail, int ringDetail
-   // cylinder = new Toroid(1, .45, 16, 16);
-    Cylinder cylinder(.5, 1, 15);
-    //Paraboloid(.5, 1, 10, 10, 1);
+    //float toroidRadius, float ringRadius, int toroidDetail, int ringDetail
+   // toroid = new Toroid(1, .45, 16, 16);
+    Toroid toroid(1, .45, 36, 36);
+
     
+
 	// initialize view matrices
 	glViewport(0, 0, 640, 480);
 
-    
-    float camPositionX = 0.0;
-    float camPositionY = 0.0;
-    float camPositionZ = 20.0;
-    
-    float camFrontX = 0.0;
-    float camFrontY = 0.0;
-    float camFrontZ = 0.0;
-    
-    float camUpX = 0.0;
-    float camUpY = -1.0;
-    float camUpZ = 0.0;
-    
-    glm::vec3 cameraPos   = glm::vec3(camPositionX, camPositionY, camPositionZ);
-    glm::vec3 cameraFront = glm::vec3(camFrontX, camFrontY, camFrontZ);
-    glm::vec3 cameraUp    = glm::vec3(camUpX, camUpY, camUpZ);
-    
 	// START standard transformation matrices: ModelView / Projection / Normal
 	M = glm::mat4(1.0f); // set to identity
     // eye, center, up axis
-	V = glm::lookAt(cameraPos, cameraFront, cameraUp);
+	V = glm::lookAt(glm::vec3(0.0, 0.0, 3.0f), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 	MV = V * M;
     N = glm::transpose(glm::inverse(glm::mat3(MV)));
 
@@ -233,33 +214,13 @@ int main(void) {
         int h = 0;
         glfwGetFramebufferSize(window, &w, &h);
         
-        if(glfwGetKey(window, GLFW_KEY_S)){
-            camPositionZ++;
-        }
-        
-        if(glfwGetKey(window, GLFW_KEY_W )){
-            camPositionZ--;
-        }
-        
-        if(glfwGetKey(window, GLFW_KEY_A)){
-            camFrontX--;
-        }
-        
-        if(glfwGetKey(window, GLFW_KEY_D )){
-            camFrontX++;
-        }
-        
-        
         // set viewport using actual resolution independent screen size
         glViewport(0, 0, w, h);
 		
-        cameraPos   = glm::vec3(camPositionX, camPositionY, camPositionZ);
-        cameraFront = glm::vec3(camFrontX, camFrontY, camFrontZ);
-        cameraUp    = glm::vec3(camUpX, camUpY, camUpZ);
-        
+
 		// reset to identity each frame
 		M = glm::mat4(1.0f);
-        V = glm::lookAt(cameraPos, cameraFront + cameraFront, cameraUp);
+        V = glm::lookAt(glm::vec3(0.0, 0.0, 20), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0));
 		MV = V * M;
         //mat4 normalMatrix = transpose(inverse(modelView));
         N = glm::transpose(glm::inverse(glm::mat3(MV)));
@@ -305,7 +266,7 @@ int main(void) {
         translate(glm::vec3(0, 0, -8));
         rotate(-glfwGetTime(), glm::vec3(.65, 1, .345));
         scale(glm::vec3(2.55, 2.55, 2.55));
-        cylinder.display();
+        toroid.display();
         popMatrix();
 
         

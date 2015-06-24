@@ -12,12 +12,14 @@
 		7246BE3E1B39CD12003DAC6D /* Toroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7246BE351B39CD12003DAC6D /* Toroid.cpp */; };
 		7246BE3F1B39CD12003DAC6D /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7246BE371B39CD12003DAC6D /* Cube.cpp */; };
 		7246BE401B39CD12003DAC6D /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7246BE3A1B39CD12003DAC6D /* Shader.cpp */; };
+		7246BE421B39E049003DAC6D /* FreeImage.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 7246BE411B39E049003DAC6D /* FreeImage.h */; };
 		728D6D171B1E28CD005BA29C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728D6D161B1E28CD005BA29C /* OpenGL.framework */; };
 		728D6D191B1E28D3005BA29C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728D6D181B1E28D3005BA29C /* GLUT.framework */; };
 		728D6D1B1B1E28D9005BA29C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728D6D1A1B1E28D9005BA29C /* CoreVideo.framework */; };
 		728D6D1D1B1E28EC005BA29C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728D6D1C1B1E28EC005BA29C /* IOKit.framework */; };
-		728D6FDE1B1E293A005BA29C /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 728D6FDD1B1E293A005BA29C /* libglfw3.a */; };
 		728D6FE01B1E2B36005BA29C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 728D6FDF1B1E2B36005BA29C /* Cocoa.framework */; };
+		B9E878981B3B149E0030491A /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E878971B3B149E0030491A /* libglfw3.a */; };
+		B9E8789C1B3B226F0030491A /* libassimp.3.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E8789B1B3B226F0030491A /* libassimp.3.1.1.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,13 +50,15 @@
 		7246BE391B39CD12003DAC6D /* Elem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elem.h; sourceTree = "<group>"; };
 		7246BE3A1B39CD12003DAC6D /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
 		7246BE3B1B39CD12003DAC6D /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shader.h; sourceTree = "<group>"; };
+		7246BE411B39E049003DAC6D /* FreeImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FreeImage.h; path = FreeImage/FreeImage.h; sourceTree = "<group>"; };
 		728D6D0C1B1E28A0005BA29C /* GLFW_Demo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GLFW_Demo; sourceTree = BUILT_PRODUCTS_DIR; };
 		728D6D161B1E28CD005BA29C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		728D6D181B1E28D3005BA29C /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		728D6D1A1B1E28D9005BA29C /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		728D6D1C1B1E28EC005BA29C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		728D6FDD1B1E293A005BA29C /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../../../Documents/GLFW/src/libglfw3.a; sourceTree = "<group>"; };
 		728D6FDF1B1E2B36005BA29C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B9E878971B3B149E0030491A /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw3.a; sourceTree = "<group>"; };
+		B9E8789B1B3B226F0030491A /* libassimp.3.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libassimp.3.1.1.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9E8789C1B3B226F0030491A /* libassimp.3.1.1.dylib in Frameworks */,
+				B9E878981B3B149E0030491A /* libglfw3.a in Frameworks */,
+				7246BE421B39E049003DAC6D /* FreeImage.h in Frameworks */,
 				728D6FE01B1E2B36005BA29C /* Cocoa.framework in Frameworks */,
-				728D6FDE1B1E293A005BA29C /* libglfw3.a in Frameworks */,
 				728D6D1D1B1E28EC005BA29C /* IOKit.framework in Frameworks */,
 				728D6D1B1B1E28D9005BA29C /* CoreVideo.framework in Frameworks */,
 				728D6D191B1E28D3005BA29C /* GLUT.framework in Frameworks */,
@@ -77,6 +83,9 @@
 		728D6D031B1E28A0005BA29C = {
 			isa = PBXGroup;
 			children = (
+				B9E8789B1B3B226F0030491A /* libassimp.3.1.1.dylib */,
+				B9E878971B3B149E0030491A /* libglfw3.a */,
+				7246BE411B39E049003DAC6D /* FreeImage.h */,
 				7246BE2D1B39CD12003DAC6D /* Face.h */,
 				7246BE2E1B39CD12003DAC6D /* Geom.cpp */,
 				7246BE2F1B39CD12003DAC6D /* Geom.h */,
@@ -93,7 +102,6 @@
 				7246BE3A1B39CD12003DAC6D /* Shader.cpp */,
 				7246BE3B1B39CD12003DAC6D /* Shader.h */,
 				728D6FDF1B1E2B36005BA29C /* Cocoa.framework */,
-				728D6FDD1B1E293A005BA29C /* libglfw3.a */,
 				728D6D1C1B1E28EC005BA29C /* IOKit.framework */,
 				728D6D1A1B1E28D9005BA29C /* CoreVideo.framework */,
 				728D6D181B1E28D3005BA29C /* GLUT.framework */,
@@ -267,10 +275,11 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/33993405/Documents/GLFW/src,
+					"$(PROJECT_DIR)/GLFW/src",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = include;
+				USER_HEADER_SEARCH_PATHS = "include FreeImage/";
 			};
 			name = Debug;
 		};
@@ -279,10 +288,11 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/33993405/Documents/GLFW/src,
+					"$(PROJECT_DIR)/GLFW/src",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = include;
+				USER_HEADER_SEARCH_PATHS = "include FreeImage/";
 			};
 			name = Release;
 		};

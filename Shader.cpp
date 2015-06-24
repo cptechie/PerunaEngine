@@ -46,34 +46,12 @@ void Shader::init() {
 	shader_vp = glCreateShader(GL_VERTEX_SHADER);
 	if (0 == shader_vp){
 		std::cerr << "Error creating vertex shader" << std::endl;
-        
-        GLint maxLength = 0;
-        glGetShaderiv(shader_vp, GL_INFO_LOG_LENGTH, &maxLength);
-        
-        // The maxLength includes the NULL character
-        std::vector<GLchar> errorLog(maxLength);
-        glGetShaderInfoLog(shader_vp, maxLength, &maxLength, &errorLog[0]);
-        
-        printf("GL Error Log\n");
-        printf(errorLog.data());
-        
 		return;
 	}
 
 	shader_fp = glCreateShader(GL_FRAGMENT_SHADER);
 	if (0 == shader_fp){
 		std::cerr << "Error creating fragment shader" << std::endl;
-        
-        GLint maxLength = 0;
-        glGetShaderiv(shader_fp, GL_INFO_LOG_LENGTH, &maxLength);
-        
-        // The maxLength includes the NULL character
-        std::vector<GLchar> errorLog(maxLength);
-        glGetShaderInfoLog(shader_fp, maxLength, &maxLength, &errorLog[0]);
-        
-        printf("GL Error Log\n");
-        printf(errorLog.data());
-        
 		return;
 	}
 
